@@ -29,8 +29,8 @@ Preprocess test data, predict using the trained model, and visualize the results
 
 
 ## Program
-#### Name: Mukil kumar v
-#### Register Number: 212222230087
+#### Name: SHARAN MJ
+#### Register Number: 212222240097
 ```
 import numpy as np
 import matplotlib.pyplot as plt
