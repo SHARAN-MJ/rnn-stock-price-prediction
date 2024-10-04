@@ -39,15 +39,15 @@ from sklearn.preprocessing import MinMaxScaler
 from keras import layers
 from keras.models import Sequential
 
-dataset_train = pd.read_csv('trainset.csv')
+dataset_train = pd.read_csv('/content/trainset.csv')
 dataset_train.columns
 dataset_train.head()
 train_set = dataset_train.iloc[:,1:2].values
 type(train_set)
 train_set.shape
-
 sc = MinMaxScaler(feature_range=(0,1))
 training_set_scaled = sc.fit_transform(train_set)
+
 training_set_scaled.shape
 
 X_train_array = []
@@ -59,6 +59,7 @@ X_train, y_train = np.array(X_train_array), np.array(y_train_array)
 X_train1 = X_train.reshape((X_train.shape[0], X_train.shape[1],1))
 
 X_train.shape
+
 length = 60
 n_features = 1
 
@@ -68,12 +69,10 @@ model.add(layers.Dense(1))
 
 model.compile(optimizer='adam', loss='mse')
 
-print("NAME: Mukil kumar v  \nREGISTER NUMBER: 212222230087 \n        ")
-model.summary())
-
-model.fit(X_train1,y_train,epochs=30, batch_size=15)
-
-dataset_test = pd.read_csv('testset.csv')
+print("NAME: SHARAN MJ \nREGISTER NUMBER: 212222240097 \n        ")
+model.summary()
+model.fit(X_train1,y_train,epochs=100, batch_size=32)
+dataset_test = pd.read_csv('/content/testset.csv')
 test_set = dataset_test.iloc[:,1:2].values
 test_set.shape
 dataset_total = pd.concat((dataset_train['Open'],dataset_test['Open']),axis=0)
@@ -88,31 +87,38 @@ X_test = np.array(X_test)
 X_test = np.reshape(X_test,(X_test.shape[0], X_test.shape[1],1))
 
 X_test.shape
-
 predicted_stock_price_scaled = model.predict(X_test)
 predicted_stock_price = sc.inverse_transform(predicted_stock_price_scaled)
 
-print("NAME:Mukil kumar v \nREGISTER NUMBER: 212222230087\n ")
-plt.plot(np.arange(0,1384),inputs, color='yellow', label = 'Test(Real) Google stock price')
-plt.plot(np.arange(60,1384),predicted_stock_price, color='green', label = 'Predicted Google stock price')
+print("Name: SHARAN MJ      Register Number: 212222240097   ")
+plt.plot(np.arange(0,1384),inputs, color='red', label = 'Test(Real) Google stock price')
+plt.plot(np.arange(60,1384),predicted_stock_price, color='blue', label = 'Predicted Google stock price')
 plt.title('Google Stock Price Prediction')
 plt.xlabel('Time')
 plt.ylabel('Google Stock Price')
 plt.legend()
 plt.show()
+
+
+
+
+
+
+
+
 ```
 
 ## Output
 
 ### True Stock Price, Predicted Stock Price vs time
-![image](https://github.com/user-attachments/assets/cfcc1812-a87c-487e-bdca-c3f3b20ad36a)
+![Screenshot 2024-10-04 103522](https://github.com/user-attachments/assets/e36292ed-fdde-4153-a124-373f0ce5469b)
+![Screenshot 2024-10-04 103548](https://github.com/user-attachments/assets/cd161147-d2ac-455e-b50a-87ff8845b989)
 
-![image](https://github.com/user-attachments/assets/575c8b85-f82a-4f76-bbac-90120320806f)
 
 ### Mean Square Error
-![image](https://github.com/user-attachments/assets/de7a09e1-b9bc-492b-b218-2e277bc3e43b)
 
 
+![Screenshot 2024-10-04 103448](https://github.com/user-attachments/assets/1bcc163c-ba8f-43c8-8875-161bcebe9a5c)
 
 
 ## Result
